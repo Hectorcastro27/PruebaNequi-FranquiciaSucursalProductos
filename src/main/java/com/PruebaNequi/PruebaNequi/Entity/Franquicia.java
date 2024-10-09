@@ -4,10 +4,12 @@ import jakarta.persistence.*;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import lombok.Data;
 
 import java.util.List;
 
 @Entity
+@Data
 public class Franquicia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

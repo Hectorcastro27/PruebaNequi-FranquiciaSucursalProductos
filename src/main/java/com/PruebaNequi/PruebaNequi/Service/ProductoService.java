@@ -26,8 +26,6 @@ public class ProductoService {
     }
 
     public boolean eliminarProducto(Long sucursalId, Long productoId){
-        //Sucursal sucursal = sucursalRepository.findById(sucursalId).orElseThrow(() -> new RuntimeException("Franquicia no encontrada"));
-        //producto.setSucursal(sucursal);
         var producto = productoRepository.findById(productoId);
         if(producto.get().getSucursal().getId().equals(sucursalId)){
             productoRepository.deleteById(productoId);
