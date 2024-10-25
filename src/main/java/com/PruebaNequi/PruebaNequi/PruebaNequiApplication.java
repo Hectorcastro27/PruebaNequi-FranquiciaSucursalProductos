@@ -9,5 +9,4 @@ public class PruebaNequiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PruebaNequiApplication.class, args);
 	}
-
 }

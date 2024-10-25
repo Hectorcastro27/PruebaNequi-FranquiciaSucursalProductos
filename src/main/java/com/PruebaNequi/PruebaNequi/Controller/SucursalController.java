@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/sucursal")
 public class SucursalController {
+
     @Autowired
     private SucursalService sucursalService;
     @PostMapping("/{franquiciaId}")

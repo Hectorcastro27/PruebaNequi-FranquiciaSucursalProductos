@@ -12,17 +12,24 @@ import java.util.Collections;
 
 @Service
 public class ProductoService {
-
     @Autowired
     private ProductoRepository productoRepository;
     @Autowired
     private SucursalRepository sucursalRepository;
 
-
-    public Producto agregarProducto(Long sucursalId, Producto producto){
-        Sucursal sucursal = sucursalRepository.findById(sucursalId).orElseThrow(() -> new RuntimeException("Franquicia no encontrada"));
-        producto.setSucursal(sucursal);
+    public Producto agregarProducto(Producto producto){
         return productoRepository.save(producto);
+    }
+    //metodo para agregar un producto a una sucursal
+    public Producto agregarProductoSurcusal(Long sucursalId, Producto producto){
+        // buscar la sucursal a la que se va agregar el producto
+        Sucursal sucursal = sucursalRepository.findById(sucursalId)
+                .orElseThrow(() -> new RuntimeException("Franquicia no encontrada"));
+        // asocia el producto con la sucursal
+        producto.setSucursal(sucursal);
+
+        sucursal.getProducto().add(producto);
+        return productoRepository.save(producto); // guarda y devuelve el producto creado
     }
 
     public boolean eliminarProducto(Long sucursalId, Long productoId){

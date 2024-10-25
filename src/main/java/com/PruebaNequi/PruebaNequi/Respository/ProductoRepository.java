@@ -1,5 +1,6 @@
 package com.PruebaNequi.PruebaNequi.Respository;
 
+
 import com.PruebaNequi.PruebaNequi.Entity.Producto;
 import com.PruebaNequi.PruebaNequi.Entity.Sucursal;
 import org.springframework.data.jpa.repository.JpaRepository;

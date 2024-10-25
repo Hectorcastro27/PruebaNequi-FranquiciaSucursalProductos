@@ -12,13 +12,16 @@ import java.util.List;
 
 @Service
 public class SucursalService {
+
     @Autowired
     private SucursalRepository sucursalRepository;
     @Autowired
     private FranquiciaRepository franquiciaRepository;
 
     public Sucursal agregarSucursal(Long franquiciaId, Sucursal sucursal){
-        Franquicia franquicia = franquiciaRepository.findById(franquiciaId).orElseThrow(() -> new RuntimeException("Franquicia no encontrada"));
+        Franquicia franquicia = franquiciaRepository.findById(franquiciaId)
+                .orElseThrow(() -> new RuntimeException("Franquicia no encontrada"));
+
         sucursal.setFranquicia(franquicia);
         return sucursalRepository.save(sucursal);
     }
