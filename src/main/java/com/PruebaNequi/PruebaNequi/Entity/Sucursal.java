@@ -22,4 +22,8 @@ public class Sucursal {
 
     @OneToMany(mappedBy = "sucursal", cascade = CascadeType.ALL)
     private List<Producto> producto = new ArrayList<>();
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 }

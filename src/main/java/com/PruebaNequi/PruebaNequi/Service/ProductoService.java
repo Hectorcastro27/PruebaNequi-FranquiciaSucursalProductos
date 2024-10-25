@@ -1,5 +1,6 @@
 package com.PruebaNequi.PruebaNequi.Service;
 
+import com.PruebaNequi.PruebaNequi.Entity.Franquicia;
 import com.PruebaNequi.PruebaNequi.Entity.Producto;
 import com.PruebaNequi.PruebaNequi.Entity.Sucursal;
 import com.PruebaNequi.PruebaNequi.Respository.ProductoRepository;
@@ -53,5 +54,13 @@ public class ProductoService {
     public List<Producto> obtenerProductoConMasStock(){
         //Sucursal sucursal = sucursalRepository.findById(sucursalId).orElseThrow(() -> new RuntimeException("Franquicia no encontrada"));
         return productoRepository.findProductosConMayorStockPorSucursal();
+    }
+
+    public void modificarNombre(Long productoId, String nuevoNombr){
+        Producto producto = productoRepository.findById(productoId).
+                orElseThrow(() -> new RuntimeException("No  Se cambio el nombre"));
+        // actualiza el stock del producto
+        producto.setNombre(nuevoNombr);
+        productoRepository.save(producto); // guarda el producto actualizando
     }
 }

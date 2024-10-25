@@ -29,4 +29,12 @@ public class SucursalService {
     public List<Sucursal> listarSucursal(){
         return sucursalRepository.findAll();
     }
+
+    public Sucursal modificarNombre(Long sucursalId, String nuevNombre){
+        Sucursal sucursal = sucursalRepository.findById(sucursalId).
+                orElseThrow(() -> new RuntimeException("No  Se cambio el nombre"));
+        // actualiza el stock del producto
+        sucursal.setNombre(nuevNombre);
+        return sucursalRepository.save(sucursal); // guarda el producto actualizando
+    }
 }

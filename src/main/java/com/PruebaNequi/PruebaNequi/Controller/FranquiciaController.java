@@ -57,7 +57,7 @@ public class FranquiciaController {
         return franquiciaService.listarFranquicias();
     }
 
-    @PutMapping("/{franquiciaId}/{nombre}")
+    @PutMapping("/{franquiciaId}/nombre")
     public ResponseEntity<Map<String,Object>>modificarStock(@PathVariable Long franquiciaId, @RequestParam String nuevoNombre){
         long startTime = System.currentTimeMillis(); //tiempo de inicio
 
@@ -68,7 +68,7 @@ public class FranquiciaController {
         long responseTime = endTime-startTime;
         Map<String,Object> response = new HashMap<>();
         response.put("status","success");
-        response.put("producto","Stock Actualizando exitosamente");
+        response.put("producto","Cambio de Nombre exitosamente");
         response.put("tiempo_respuesta_ms",responseTime);
         return new ResponseEntity<>(response, HttpStatus.OK);
         //return new ResponseEntity<>(productoService.modificarStock(productoId,stock), HttpStatus.OK);

@@ -1,6 +1,7 @@
 package com.PruebaNequi.PruebaNequi.Controller;
 
 import com.PruebaNequi.PruebaNequi.Entity.Franquicia;
+import com.PruebaNequi.PruebaNequi.Entity.Producto;
 import com.PruebaNequi.PruebaNequi.Entity.Sucursal;
 import com.PruebaNequi.PruebaNequi.Service.SucursalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/sucursal")
@@ -24,5 +27,22 @@ public class SucursalController {
     @GetMapping
     private List<Sucursal> listarFranquicias(){
         return sucursalService.listarSucursal();
+    }
+
+    @PutMapping("/{sucursalId}/nombre")
+    public ResponseEntity<Map<String,Object>>modificarStock(@PathVariable Long sucursalId, @RequestParam String nuevNombre){
+        long startTime = System.currentTimeMillis(); //tiempo de inicio
+
+        sucursalService.modificarNombre(sucursalId, nuevNombre); //llamada al servicio
+
+        long endTime = System.currentTimeMillis(); //tiempo de finalizacion
+
+        long responseTime = endTime-startTime;
+        Map<String,Object> response = new HashMap<>();
+        response.put("status","success");
+        response.put("Sucursal","Cambio de Nombre exitosamente");
+        response.put("tiempo_respuesta_ms",responseTime);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+        //return new ResponseEntity<>(productoService.modificarStock(productoId,stock), HttpStatus.OK);
     }
 }

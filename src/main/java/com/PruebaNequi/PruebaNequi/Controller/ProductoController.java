@@ -84,4 +84,21 @@ public class ProductoController {
     public ResponseEntity<Boolean> eliminarProducto(@PathVariable Long sucursalId, @PathVariable Long productoId){
         return new ResponseEntity<>(productoService.eliminarProducto(sucursalId,productoId), HttpStatus.OK);
     }
+
+    @PutMapping("/{productoId}/nombre")
+    public ResponseEntity<Map<String,Object>>modificarStock(@PathVariable Long productoId, @RequestParam String nuevoNombr){
+        long startTime = System.currentTimeMillis(); //tiempo de inicio
+
+        productoService.modificarNombre(productoId, nuevoNombr); //llamada al servicio
+
+        long endTime = System.currentTimeMillis(); //tiempo de finalizacion
+
+        long responseTime = endTime-startTime;
+        Map<String,Object> response = new HashMap<>();
+        response.put("status","success");
+        response.put("producto","Cambio de Nombre exitosamente");
+        response.put("tiempo_respuesta_ms",responseTime);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+        //return new ResponseEntity<>(productoService.modificarStock(productoId,stock), HttpStatus.OK);
+    }
 }
