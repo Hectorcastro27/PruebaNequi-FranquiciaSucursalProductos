@@ -42,9 +42,11 @@ public class ProductoService {
     }
 
     public Producto modificarStock(Long productoId, int nuevoStock){
-        Producto producto = productoRepository.findById(productoId).orElseThrow(() -> new RuntimeException("Franquicia no encontrada"));
+        Producto producto = productoRepository.findById(productoId).
+                orElseThrow(() -> new RuntimeException("Producto no encontrao"));
+        // actualiza el stock del producto
         producto.setStock(nuevoStock);
-        return productoRepository.save(producto);
+        return productoRepository.save(producto); // guarda el producto actualizando
     }
 
     public Producto obtenerProductoConMasStock(Long sucursalId){

@@ -30,7 +30,7 @@ public class FranquiciaController {
         long responseTime = endTime-startTime;
         Map<String,Object> response = new HashMap<>();
         response.put("status",200);
-        response.put("producto",franquiciacreado);
+        response.put("franquicia","Se agrego exitosamente");
         response.put("tiempo_respuesta_ms",responseTime);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
@@ -46,7 +46,7 @@ public class FranquiciaController {
         long responseTime = endTime-startTime;
         Map<String,Object> response = new HashMap<>();
         response.put("status",200);
-        response.put("producto",nuevaSucursal);
+        response.put("sucursal","Se agrega exitosamente");
         response.put("tiempo_respuesta_ms",responseTime);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }

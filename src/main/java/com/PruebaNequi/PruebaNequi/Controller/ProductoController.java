@@ -47,7 +47,7 @@ public class ProductoController {
         long responseTime = endTime-startTime;
         Map<String,Object> response = new HashMap<>();
         response.put("status","success");
-        response.put("producto",productoEnSucursalCreado);
+        response.put("producto","Se agrego exitosamente");
         response.put("tiempo_respuesta_ms",responseTime);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
         //return new ResponseEntity<>(productoService.agregarProductoSurcusal(sucursalId,producto), HttpStatus.CREATED);
@@ -64,7 +64,7 @@ public class ProductoController {
         long responseTime = endTime-startTime;
         Map<String,Object> response = new HashMap<>();
         response.put("status","success");
-        response.put("producto",productoActualizado);
+        response.put("producto","Stock Actualizando exitosamente");
         response.put("tiempo_respuesta_ms",responseTime);
         return new ResponseEntity<>(response, HttpStatus.OK);
         //return new ResponseEntity<>(productoService.modificarStock(productoId,stock), HttpStatus.OK);
