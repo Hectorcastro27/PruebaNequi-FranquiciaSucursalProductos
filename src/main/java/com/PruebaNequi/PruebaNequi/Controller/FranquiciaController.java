@@ -1,6 +1,7 @@
 package com.PruebaNequi.PruebaNequi.Controller;
 
 import com.PruebaNequi.PruebaNequi.Entity.Franquicia;
+import com.PruebaNequi.PruebaNequi.Entity.Producto;
 import com.PruebaNequi.PruebaNequi.Entity.Sucursal;
 import com.PruebaNequi.PruebaNequi.Service.FranquiciaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,5 +55,22 @@ public class FranquiciaController {
     @GetMapping
     private List<Franquicia> listarFranquicias(){
         return franquiciaService.listarFranquicias();
+    }
+
+    @PutMapping("/{franquiciaId}/{nombre}")
+    public ResponseEntity<Map<String,Object>>modificarStock(@PathVariable Long franquiciaId, @RequestParam String nuevoNombre){
+        long startTime = System.currentTimeMillis(); //tiempo de inicio
+
+        franquiciaService.modificarNombre(franquiciaId, nuevoNombre); //llamada al servicio
+
+        long endTime = System.currentTimeMillis(); //tiempo de finalizacion
+
+        long responseTime = endTime-startTime;
+        Map<String,Object> response = new HashMap<>();
+        response.put("status","success");
+        response.put("producto","Stock Actualizando exitosamente");
+        response.put("tiempo_respuesta_ms",responseTime);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+        //return new ResponseEntity<>(productoService.modificarStock(productoId,stock), HttpStatus.OK);
     }
 }

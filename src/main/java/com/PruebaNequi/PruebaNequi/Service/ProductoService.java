@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.List;
 
 
 @Service
@@ -43,14 +44,14 @@ public class ProductoService {
 
     public Producto modificarStock(Long productoId, int nuevoStock){
         Producto producto = productoRepository.findById(productoId).
-                orElseThrow(() -> new RuntimeException("Producto no encontrao"));
+                orElseThrow(() -> new RuntimeException("Producto no encontrado"));
         // actualiza el stock del producto
         producto.setStock(nuevoStock);
         return productoRepository.save(producto); // guarda el producto actualizando
     }
 
-    public Producto obtenerProductoConMasStock(Long sucursalId){
-        Sucursal sucursal = sucursalRepository.findById(sucursalId).orElseThrow(() -> new RuntimeException("Franquicia no encontrada"));
-        return productoRepository.findTopBySucursalOrderByStockDesc(sucursal);
+    public List<Producto> obtenerProductoConMasStock(){
+        //Sucursal sucursal = sucursalRepository.findById(sucursalId).orElseThrow(() -> new RuntimeException("Franquicia no encontrada"));
+        return productoRepository.findProductosConMayorStockPorSucursal();
     }
 }

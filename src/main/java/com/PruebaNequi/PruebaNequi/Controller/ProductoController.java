@@ -4,16 +4,19 @@ import com.PruebaNequi.PruebaNequi.Entity.Producto;
 import com.PruebaNequi.PruebaNequi.Entity.Sucursal;
 import com.PruebaNequi.PruebaNequi.Service.ProductoService;
 import com.PruebaNequi.PruebaNequi.Service.SucursalService;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/api/productos")
+@Data
 public class ProductoController {
 
     @Autowired
@@ -70,9 +73,11 @@ public class ProductoController {
         //return new ResponseEntity<>(productoService.modificarStock(productoId,stock), HttpStatus.OK);
     }
 
-    @GetMapping("/mayor-stock/{sucursalId}")
-    public ResponseEntity<Producto> obtenerProductoConMasStock(@PathVariable Long sucursalId){
-        return new ResponseEntity<>(productoService.obtenerProductoConMasStock(sucursalId), HttpStatus.OK);
+    @GetMapping("/mayor-stock")
+    public ResponseEntity<List<Producto>> obtenerProductoConMasStock(){
+        List<Producto> productos = productoService.obtenerProductoConMasStock();
+        return ResponseEntity.ok(productos);
+        //return new ResponseEntity<>(productoService.obtenerProductoConMasStock(productos), HttpStatus.OK);
     }
 
     @DeleteMapping("{sucursalId}/{productoId}")

@@ -1,6 +1,7 @@
 package com.PruebaNequi.PruebaNequi.Service;
 
 import com.PruebaNequi.PruebaNequi.Entity.Franquicia;
+import com.PruebaNequi.PruebaNequi.Entity.Producto;
 import com.PruebaNequi.PruebaNequi.Entity.Sucursal;
 import com.PruebaNequi.PruebaNequi.Respository.FranquiciaRepository;
 import com.PruebaNequi.PruebaNequi.Respository.SucursalRepository;
@@ -34,5 +35,13 @@ public class FranquiciaService {
 
     public List<Franquicia> listarFranquicias(){
         return franquiciaRepository.findAll();
+    }
+
+    public void modificarNombre(Long franquiciaId, String nuevoNombre){
+        Franquicia franquicia = franquiciaRepository.findById(franquiciaId).
+                orElseThrow(() -> new RuntimeException("No  Se cambio el nombre"));
+        // actualiza el stock del producto
+        franquicia.setNombre(nuevoNombre);
+        franquiciaRepository.save(franquicia); // guarda el producto actualizando
     }
 }
