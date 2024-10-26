@@ -87,18 +87,34 @@ public class ProductoController {
 
     @PutMapping("/{productoId}/nombre")
     public ResponseEntity<Map<String,Object>>modificarStock(@PathVariable Long productoId, @RequestParam String nuevoNombr){
-        long startTime = System.currentTimeMillis(); //tiempo de inicio
+        if(nuevoNombr == null || nuevoNombr.trim().isEmpty()){
+            long startTime = System.currentTimeMillis(); //tiempo de inicio
 
-        productoService.modificarNombre(productoId, nuevoNombr); //llamada al servicio
+            productoService.modificarNombre(productoId, nuevoNombr); //llamada al servicio
 
-        long endTime = System.currentTimeMillis(); //tiempo de finalizacion
+            long endTime = System.currentTimeMillis(); //tiempo de finalizacion
 
-        long responseTime = endTime-startTime;
-        Map<String,Object> response = new HashMap<>();
-        response.put("status","success");
-        response.put("producto","Cambio de Nombre exitosamente");
-        response.put("tiempo_respuesta_ms",responseTime);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+            long responseTime = endTime - startTime;
+            Map<String, Object> response = new HashMap<>();
+            response.put("status", HttpStatus.BAD_REQUEST);
+            response.put("producto", "No se realizco el Cambio de Nombre");
+            response.put("tiempo_respuesta_ms", responseTime);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }else{
+
+            long startTime = System.currentTimeMillis(); //tiempo de inicio
+
+            productoService.modificarNombre(productoId, nuevoNombr); //llamada al servicio
+
+            long endTime = System.currentTimeMillis(); //tiempo de finalizacion
+
+            long responseTime = endTime - startTime;
+            Map<String, Object> response = new HashMap<>();
+            response.put("status", HttpStatus.OK);
+            response.put("producto", "Cambio de Nombre exitosamente");
+            response.put("tiempo_respuesta_ms", responseTime);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
         //return new ResponseEntity<>(productoService.modificarStock(productoId,stock), HttpStatus.OK);
     }
 }

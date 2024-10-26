@@ -1,5 +1,5 @@
 # PruebaNequi-FranquiciaSucursalProductos
-# PruebaNequi-FranquiciaSucursalProductos
+
 
 # Instrucciones para Subir un Proyecto Spring Boot
 # este documento ofrece un tutorial detallado 
@@ -13,8 +13,14 @@
 # mvn spring-boot:run
 
 # -POST: /api/franquicias para agregar una nueva franquicias.
-# -POST: /api/sucursales/{franquiciasID} para agregar una sucursal a una franquicia.
-# -POST: /api/productos/{sucursalID} para agregar un producto a una sucursal.
-# -DELETE: /api/productos/{sucursalID} para eliminar un producto a una sucursal
-# -PUT: /api/productos/{productoID}/stock?stock ={nuevoStock} para modificar el stock de un        producto.
-# -GET: /api/productos/mayor-stock/{sucursalID} para obtener el producto con mas stock de una surcusal.
+# -POST: /api/franquicias/franquiciaId}/sucursales para agregar una sucursal a una franquicia.
+# -POST: /api/productos/sucursales/{sucursalId} para agregar un producto a una sucursal.
+# -DELETE: /api/productos/{sucursalId}/{productoId} para eliminar un producto a una sucursal
+# -PUT: /api/productos/{productoId}/{stock}para modificar el stock de un producto.
+# -GET: /api/productos//mayor-stock para obtener el producto con mas stock de una surcusal.
+
+# -PUT: /api/franquicias/franquiciasId/nombre?nuevoNombre={nombreacambiar}
+# -PUT: /api/sucursal/sucursalId/nombre?nuevNombre={nombreacambiar}
+# -PUT: /api/productos/productosId/nombre?nuevoNombr={nombreacambiar}
+
+# Github: https://github.com/Hectorcastro27/PruebaNequi-FranquiciaSucursalProductos/tree/main/src/main/java/com/PruebaNequi/PruebaNequi
