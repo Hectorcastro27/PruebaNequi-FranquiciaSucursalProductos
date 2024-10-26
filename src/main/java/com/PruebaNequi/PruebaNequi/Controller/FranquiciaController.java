@@ -68,7 +68,7 @@ public class FranquiciaController {
         long responseTime = endTime-startTime;
         Map<String,Object> response = new HashMap<>();
         response.put("status","success");
-        response.put("producto","Cambio de Nombre exitosamente");
+        response.put("franquicia","Cambio de Nombre exitosamente");
         response.put("tiempo_respuesta_ms",responseTime);
         return new ResponseEntity<>(response, HttpStatus.OK);
         //return new ResponseEntity<>(productoService.modificarStock(productoId,stock), HttpStatus.OK);
