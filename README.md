@@ -12,6 +12,11 @@
 
 # mvn spring-boot:run
 
+# BD H2
+# http://localhost:8080/h2-console/login.do?jsessionid=91b31300471e8765c4cb45963de03780
+# username=sa
+# password=password123
+
 # -POST: /api/franquicias para agregar una nueva franquicias.
 # -POST: /api/franquicias/franquiciaId}/sucursales para agregar una sucursal a una franquicia.
 # -POST: /api/productos/sucursales/{sucursalId} para agregar un producto a una sucursal.
